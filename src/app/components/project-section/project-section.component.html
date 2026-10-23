@@ -1,0 +1,31 @@
+<section class="latest-projects-section">
+  <div class="latest-projects-header">
+    <div class="latest-label-wrap">
+      <div class="latest-status-dot"></div>
+      <p class="ui-text text-preset-section-label">Latest projects</p>
+    </div>
+    <h2 class="ui-text text-preset-section-heading">Some of my other stuff</h2>
+  </div>
+
+  <div class="latest-projects-grid">
+    <a
+      *ngFor="let project of displayedProjects()"
+      class="latest-card"
+      [routerLink]="project.link"
+    >
+      <div class="latest-card-details">
+        <p class="ui-text text-preset-tag">{{ project.tag }}</p>
+        <h3 class="ui-text text-preset-project-title">{{ project.title }}</h3>
+        <!-- <p class="ui-text text-preset-small opacity-50">{{ project.role }}</p> -->
+      </div>
+      <div class="latest-card-image">
+        <img
+          [src]="project.image"
+          [alt]="project.imageAlt"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </a>
+  </div>
+</section>

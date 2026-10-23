@@ -1,0 +1,102 @@
+<section id="hero" #hero>
+  <div class="hero-paint" id="heroPaint"></div>
+  <div class="section-cursor-grid hero-cursor-grid" appCursorGrid></div>
+
+  <!-- Base layer -->
+  <div class="hero-base">
+    <div class="hero-main">
+      <p class="hero-hello">Hi, I&rsquo;m Saju S V &mdash; a</p>
+      <h1 class="hero-title">
+        <span class="line line-1">UI/UX
+          <span class="eyes-scene">
+            <span class="eye"><span class="pupil"></span></span>
+            <span class="eye"><span class="pupil"></span></span>
+            <button type="button" class="cursor-hint" id="cursorHint" aria-label="Colour me">colour me</button>
+          </span>
+        </span>
+        <span class="line line-2">Developer</span>
+      </h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">From interface design to website development, focused on usability and visual appeal.</p>
+      <div class="hero-mobile-exp">
+        <h3 class="hero-mobile-exp-period">(2024 &ndash; PRESENT)</h3>
+        <p class="hero-mobile-exp-text">UI/UX Developer and front-end focused WordPress developer experienced in UI/UX design, client requirements, wireframing, and responsive WordPress development using Elementor, HTML5, CSS3, SCSS, JavaScript, with working knowledge of React and Angular and basic PHP.</p>
+      </div>
+      <div class="hero-actions">
+        <a routerLink="/projects" class="availability-badge hero-work-btn">
+          <div class="availability-badge-dot">
+            <p>View Projects</p>
+          </div>
+          <div class="div-green-small-div">
+            <div class="div-green-small-div-wrapper">
+              <svg height="100%" viewBox="0 0 256 256" width="100%" xmlns="http://www.w3.org/2000/svg" style="scale:0.7">
+                <path
+                  d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a href="https://myportfolio-eosin-delta-45.vercel.app/assets/cv/SAJU%20S%20V.pdf" class="hero-btn ghost" target="_blank" rel="noopener">Download r&eacute;sum&eacute;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invert layer (revealed by rub mask) -->
+  <div class="hero-invert" id="heroInvert" aria-hidden="true">
+    <div class="hero-main">
+      <p class="hero-hello">Hi, I&rsquo;m Saju S V &mdash; a</p>
+      <h1 class="hero-title">
+        <span class="line line-1">UI/UX
+          <span class="eyes-spacer" aria-hidden="true"><span></span><span></span></span>
+        </span>
+        <span class="line line-2">Developer</span>
+      </h1>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-desc">From interface design to website development, focused on usability and visual appeal.</p>
+      <div class="hero-mobile-exp">
+        <h3 class="hero-mobile-exp-period">(2024 &ndash; PRESENT)</h3>
+        <p class="hero-mobile-exp-text">UI/UX Developer and front-end focused WordPress developer experienced in UI/UX design, client requirements, wireframing, and responsive WordPress development using Elementor, HTML5, CSS3, SCSS, JavaScript, with working knowledge of React and Angular and basic PHP.</p>
+      </div>
+      <div class="hero-actions">
+        <a routerLink="/projects" class="availability-badge hero-work-btn" tabindex="-1">
+          <div class="availability-badge-dot">
+            <p>View Projects</p>
+          </div>
+          <div class="div-green-small-div">
+            <div class="div-green-small-div-wrapper">
+              <svg height="100%" viewBox="0 0 256 256" width="100%" xmlns="http://www.w3.org/2000/svg" style="scale:0.7">
+                <path
+                  d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+        <a href="https://myportfolio-eosin-delta-45.vercel.app/assets/cv/SAJU%20S%20V.pdf" class="hero-btn ghost" tabindex="-1" target="_blank" rel="noopener">Download resume</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rub reveal mask definition -->
+  <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1;" aria-hidden="true">
+    <defs>
+      <radialGradient id="rubSoftCircle" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+        <stop offset="65%" stop-color="#ffffff" stop-opacity="0.95" />
+        <stop offset="85%" stop-color="#ffffff" stop-opacity="0.45" />
+        <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+      </radialGradient>
+      <filter id="rubFilter" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+      </filter>
+      <mask id="rubMask" maskUnits="objectBoundingBox" x="-20%" y="-20%" width="140%" height="140%">
+        <rect x="-2000" y="-2000" width="5000" height="5000" fill="black" />
+        <g id="rubDots" #rubDots filter="url(#rubFilter)"></g>
+      </mask>
+    </defs>
+  </svg>
+</section>
+

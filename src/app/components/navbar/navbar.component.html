@@ -1,0 +1,73 @@
+<div class="site-header-wrapper" [class.menu-open]="isMenuOpen">
+  <nav class="nav-pill">
+    <!-- Logo / Profile Avatar -->
+    <a routerLink="/" class="nav-logo" aria-label="Saju S V — Home" (click)="closeAll()">
+      <img src="/assets/images/Saju-SV.jpg" alt="Saju S V" />
+    </a>
+
+    <!-- Nav Links -->
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeAll()" class="nav-link-home">Home</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeAll()" class="nav-link-about">About</a>
+      <button type="button" class="nav-dropdown-trigger" [class.active]="router.url.startsWith('/projects')" (click)="toggleDropdown($event)" aria-label="Projects">
+        <span>Projects</span>
+        <svg class="dropdown-chevron" [class.rotated]="isDropdownOpen" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Resume Button -->
+    <a href="https://myportfolio-eosin-delta-45.vercel.app/assets/cv/SAJU%20S%20V.pdf" target="_blank" rel="noopener" class="nav-resume" aria-label="Download resume" title="Download Resume">
+      <span class="nav-resume-text">Resume</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+      </svg>
+    </a>
+
+    <!-- Email Link -->
+    <a href="mailto:sajusv2002@gmail.com" class="nav-email">sajusv2002&#64;gmail.com</a>
+
+    <!-- Mobile Hamburger Toggle -->
+    <button type="button" class="nav-mobile-toggle" (click)="toggleMenu($event)" aria-label="Toggle navigation">
+      <span class="hamburger-bar" [class.open]="isMenuOpen"></span>
+    </button>
+  </nav>
+
+  <!-- Projects Dropdown (desktop) -->
+  <div class="nav-dropdown" [class.open]="isDropdownOpen" (click)="$event.stopPropagation()">
+    <a routerLink="/projects" routerLinkActive="active" (click)="closeAll()">All Projects</a>
+    <a routerLink="/projects/webdesign" routerLinkActive="active" (click)="closeAll()">Web Design</a>
+    <a routerLink="/projects/posterdesign" routerLinkActive="active" (click)="closeAll()">Poster Design</a>
+    <a routerLink="/projects/webdev" routerLinkActive="active" (click)="closeAll()">Web Development</a>
+  </div>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="nav-mobile-overlay" [class.open]="isMenuOpen" (click)="closeMenu()">
+    <div class="nav-mobile-menu" (click)="$event.stopPropagation()">
+      <div class="nav-mobile-header">
+        <a routerLink="/" class="nav-mobile-brand" (click)="closeMenu()" aria-label="Saju S V — Home">
+          <img src="/assets/images/Saju-SV.jpg" alt="Saju S V" class="mobile-avatar" />
+          <span class="nav-mobile-title">Saju S V</span>
+        </a>
+        <button type="button" class="nav-mobile-close" (click)="closeMenu()" aria-label="Close menu">&times;</button>
+      </div>
+      <div class="nav-mobile-links">
+        <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a>
+        <a routerLink="/projects" routerLinkActive="active" (click)="closeMenu()">All Projects</a>
+        <div class="nav-mobile-subgroup">
+          <span class="subgroup-label">Projects</span>
+          <a routerLink="/projects/webdesign" routerLinkActive="active" (click)="closeMenu()">Web Design</a>
+          <a routerLink="/projects/posterdesign" routerLinkActive="active" (click)="closeMenu()">Poster Design</a>
+          <a routerLink="/projects/webdev" routerLinkActive="active" (click)="closeMenu()">Web Development</a>
+        </div>
+        <a href="https://myportfolio-eosin-delta-45.vercel.app/assets/cv/SAJU%20S%20V.pdf" target="_blank" rel="noopener" class="mobile-resume-btn">
+          <span>Download Resume</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16">
+            <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

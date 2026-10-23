@@ -1,0 +1,69 @@
+/* Split from: css/style.css, css/saju.css (rules copied verbatim, original order kept) */
+
+/* ── WORK SECTION: accordion gallery ── */
+#work {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px clamp(20px, 4vw, 60px) 140px;
+  box-sizing: border-box;
+}
+
+#work .intro-label {
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+@media (max-width: 900px) {
+  #work {
+    width: 100%;
+    padding: 30px clamp(20px, 4vw, 60px) 60px;
+    box-sizing: border-box;
+  }
+}
+
+.work-heading {
+  font-family: var(--font-clash, 'Clash Display', Arial, sans-serif);
+  font-weight: 500;
+  font-size: clamp(32px, 4.5vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin: 18px 0 36px;
+  color: var(--color-charcoal, #222222);
+}
+
+.work-heading span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-manrope, 'JetBrains Mono', sans-serif);
+  font-weight: 500;
+  font-size: clamp(13px, 1.4vw, 16px);
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: rgba(34, 34, 34, 0.55);
+  margin-bottom: 14px;
+}
+
+.work-heading span::before {
+  content: '';
+  display: inline-block;
+  width: clamp(10px, 1vw, 13px);
+  height: clamp(10px, 1vw, 13px);
+  border-radius: 50%;
+  background-color: var(--color-primary, #2ebdff);
+  flex-shrink: 0;
+}
+
+@media (min-width: 901px) {
+  #work {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vh, 80px) clamp(20px, 4vw, 60px);
+  }
+}

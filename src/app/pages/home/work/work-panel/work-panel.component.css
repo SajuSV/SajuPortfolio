@@ -1,0 +1,213 @@
+/* Split from: css/style.css, css/saju.css (rules copied verbatim, original order kept) */
+
+.acc-panel {
+  position: relative;
+  flex: 0 0 var(--closed);
+  min-width: 0;
+  border-radius: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: #0a0a0a;
+  overflow: hidden;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  transition: flex-basis 0.7s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease;
+  opacity: 0;
+  translate: 0 32px;
+}
+
+.acc-panel.is-open {
+  flex-basis: calc(100% - 2 * var(--closed) - 48px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.acc-panel:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+/* Collapsed state: faint greyscale preview + vertical label */
+.acc-peek {
+  position: absolute;
+  inset: 0;
+  background: var(--img) center / cover no-repeat;
+  filter: grayscale(1) brightness(0.2);
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.acc-peek-label {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.acc-panel.is-open .acc-peek,
+.acc-panel.is-open .acc-peek-label {
+  opacity: 0;
+}
+
+/* Open state content — fixed width so it doesn't reflow while the panel animates */
+.acc-body {
+  position: absolute;
+  inset: 0;
+  width: max(520px, 100%);
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.acc-panel.is-open .acc-body {
+  opacity: 1;
+  transition: opacity 0.5s ease 0.25s;
+  pointer-events: auto;
+}
+
+.acc-media {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+/* Crops for the padded mockup PNGs */
+
+.work-eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.work-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  max-width: 520px;
+}
+
+.work-desc {
+  margin-top: 16px;
+  max-width: 520px;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.work-tags span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.work-tags .work-go {
+  display: flex;
+  align-items: center;
+  padding: 6px 13px;
+  background: #fff;
+  color: #0a0a0a;
+  text-decoration: none;
+  border-radius: 999px;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.work-tags .work-go:hover {
+  transform: translateX(4px);
+}
+
+@media (max-width: 900px) {
+  .acc-panel,
+  .acc-panel.is-open {
+    flex-basis: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .acc-peek,
+  .acc-peek-label {
+    display: none;
+  }
+  .acc-body {
+    position: static;
+    width: auto;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 24px;
+  }
+  .acc-media {
+    height: 240px;
+    flex: none;
+  }
+  .work-title {
+    font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-panel,
+  .acc.in-view .acc-panel {
+    transition: none;
+    opacity: 1;
+    translate: none;
+  }
+}
+
+.acc-peek{background:linear-gradient(rgba(10,10,10,.45),rgba(10,10,10,.85)),var(--img,var(--grad)) center/cover no-repeat;filter:grayscale(.3) brightness(.7);transition:filter .3s ease,opacity .4s ease}
+
+.acc-panel:hover .acc-peek{filter:grayscale(0) brightness(.9)}
+
+.acc-media{flex:1;min-height:0;display:flex;align-items:center;justify-content:flex-start;margin-bottom:20px}
+
+.work-cover-img{display:block;width:100%;height:100%;max-height:270px;aspect-ratio:16/10;object-fit:cover;object-position:center;border-radius:14px;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 36px rgba(0,0,0,.45);background:#141414;cursor:pointer;transition:transform .35s cubic-bezier(0.16,1,0.3,1),border-color .3s ease}
+
+.acc-panel.is-open:hover .work-cover-img{transform:translateY(-2px);border-color:rgba(255,255,255,.26)}
+
+.acc-panel{transition:flex-basis .45s cubic-bezier(0.16,1,0.3,1),border-color .3s ease !important}
+
+.acc-panel::before{content:'';position:absolute;inset:0;background-image:var(--img);background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.1;pointer-events:none;z-index:0;transition:opacity .3s ease}
+
+.acc-peek{z-index:1}
+
+.acc-peek-label{z-index:2}
+
+.acc-body{position:absolute;inset:0;z-index:2;transition:opacity .2s ease !important}
+
+.acc-panel.is-open .acc-body{transition:opacity .35s ease .12s !important}
+
+@media (max-width: 900px) {
+  .acc-body{position:relative !important;z-index:2}
+}
+
+@media (min-width: 901px) {
+  .acc-panel.is-open{flex-basis:calc(100% - 2 * var(--closed) - 48px)}
+}

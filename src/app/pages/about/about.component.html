@@ -1,0 +1,122 @@
+<!-- ABOUT PAGE: header + a "bento" grid of 7 tiles. Lists (jobs, skills...) come from about.data.ts -->
+<div class="about-page-root">
+  <div class="section-cursor-grid" appCursorGrid></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="about-hero">
+    <div class="pl-badge">
+      <div class="pl-badge-dot"></div>
+      <p class="text-preset-section-label text-white-a50">About</p>
+    </div>
+    <h1 class="about-title">Hi, I&rsquo;m Saju. <span>Designing with clarity. Developing with purpose.</span></h1>
+  </header>
+
+  <!-- ===== BENTO GRID: each <section class="tile ..."> is one tile.
+         The class t-xxx places the tile in the grid (see about.component.css).
+         Tiles fade up when scrolled into view (see ngAfterViewInit in about.component.ts). ===== -->
+  <main class="bento">
+
+    <!-- Tile 1: portrait photo -->
+    <section class="tile t-portrait" aria-label="Portrait">
+      <img class="portrait-img" src="/img/about/saju.jpg" alt="Portrait of Saju S V" />
+    </section>
+
+    <!-- Tile 2: short bio -->
+    <section class="tile t-brief" aria-label="About me">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Brief</p>
+      </div>
+      <p>Hey, I&rsquo;m Saju S V, a UI/UX designer and front-end focused WordPress developer. I hold a Bachelor of Engineering (2019&ndash;2023), graduating with First Class with Distinction as a first-generation graduate.</p>
+      <p>I design interfaces in Figma, then build them as responsive websites with HTML, CSS, Bootstrap, Angular, React and WordPress Elementor, keeping mobile responsiveness and cross-browser compatibility in check. I also create logos, posters and homepage concepts from client requirements.</p>
+    </section>
+
+    <!-- Tile 3: numbers -->
+    <section class="tile t-music" aria-label="My Journey in Numbers">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">My Journey in Numbers</p>
+      </div>
+      <ul class="stats">
+        @for (s of stats; track s.label; let i = $index) {
+          <li><strong [appCounter]="s.value" [delay]="i * 120 + 200">{{ s.value }}</strong><span>{{ s.label }}</span></li>
+        }
+      </ul>
+      <a routerLink="/projects" class="btn-view-projects">View Projects</a>
+    </section>
+
+    <!-- Tile 4: quick facts -->
+    <section class="tile t-facts" aria-label="Quick facts">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Quick facts</p>
+      </div>
+      <ul class="facts">
+        <li><span>Based</span>Kuzhithurai, Tamil Nadu</li>
+        <li><span>Studied</span>B.E. (2019&ndash;2023)</li>
+        <li><span>Now</span>UI/UX Developer, Aatoon Solutions</li>
+      </ul>
+    </section>
+
+    <!-- Tile 5: skills as pills -->
+    <section class="tile t-skills" aria-label="Toolkit">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Toolkit</p>
+      </div>
+      <div class="pills">
+        @for (s of skills; track s) {<span>{{ s }}</span>}
+      </div>
+    </section>
+
+    <!-- Tile 6: experience timeline -->
+    <section class="tile t-exp" aria-label="Experience">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Experience</p>
+      </div>
+      <ol class="timeline">
+        @for (j of jobs; track j.title) {
+          <li><strong>{{ j.title }}</strong><time>{{ j.time }}</time><small>{{ j.note }}</small></li>
+        }
+      </ol>
+    </section>
+
+    <!-- Tile 7: tools + scrolling client logos -->
+    <section class="tile t-gallery" aria-label="Tools and clients">
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Toolbox</p>
+      </div>
+      <div class="toolbox">
+        @for (t of tools; track t.name) {
+          <div class="tool"><img [src]="t.img" alt="" /><strong>{{ t.name }}</strong><small>{{ t.note }}</small></div>
+        }
+      </div>
+
+      <div class="pl-badge">
+        <div class="pl-badge-dot"></div>
+        <p class="text-preset-section-label text-white-a50">Clients</p>
+      </div>
+      <div class="client-carousel">
+        <div class="client-carousel-track">
+          <!-- the logos are listed twice (2nd copy hidden from screen readers) so the scroll loops with no gap -->
+          <div class="client-carousel-group">
+            @for (c of clientLogos; track $index) {
+              <div class="client-carousel-item">
+                <img [src]="c.src" [alt]="c.name" loading="lazy" />
+              </div>
+            }
+          </div>
+          <div class="client-carousel-group" aria-hidden="true">
+            @for (c of clientLogos; track $index) {
+              <div class="client-carousel-item">
+                <img [src]="c.src" [alt]="c.name" loading="lazy" />
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

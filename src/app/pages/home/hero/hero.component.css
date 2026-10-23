@@ -1,0 +1,588 @@
+/* Split from: css/style.css, css/saju.css (rules copied verbatim, original order kept) */
+
+/* ── HERO ── */
+#hero {
+  position: relative;
+  height: 100vh;
+  background: #f7f7f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-paint {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0a;
+  pointer-events: none;
+  -webkit-mask-image: url(#rubMask);
+  mask-image: url(#rubMask);
+  z-index: 1;
+}
+
+.hero-cursor-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: url(#rubMask);
+  mask-image: url(#rubMask);
+}
+
+.hero-base,
+.hero-invert {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(70px, 9vh, 100px) clamp(20px, 4vw, 60px) clamp(40px, 6vh, 70px);
+  /* Base layer stays invisible on white — text only appears where the paint is rubbed in */
+  --ink: transparent;
+  --ink-dim: transparent;
+  --ink-line: transparent;
+  --btn-bg: transparent;
+  --btn-fg: transparent;
+}
+
+.hero-base {
+  z-index: 2;
+}
+
+.hero-invert {
+  z-index: 3;
+  pointer-events: none;
+  -webkit-mask-image: url(#rubMask);
+  mask-image: url(#rubMask);
+  --ink: #fff;
+  --ink-dim: #a3a3a3;
+  --ink-line: rgba(255, 255, 255, 0.14);
+  --btn-bg: #fff;
+  --btn-fg: #0a0a0a;
+}
+
+.hero-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.hero-hello {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: clamp(18px, 2.2vw, 28px);
+  color: var(--ink-dim);
+  margin-bottom: clamp(16px, 3vw, 40px);
+  cursor: default;
+}
+
+.hero-title {
+  font-family: 'Inter Tight', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 800;
+  font-size: clamp(52px, 12.6vw, 210px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: default;
+}
+
+.hero-title .line {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
+}
+
+.hero-title .line-2 {
+  justify-content: flex-end;
+}
+
+.eyes-scene,
+.eyes-spacer {
+  display: flex;
+  gap: 24px;
+  flex-shrink: 0;
+  transform: scale(var(--eye-scale, 1));
+  transform-origin: left center;
+}
+
+.eyes-spacer span,
+.eyes-scene .eye,
+.eyes-scene .pupil {
+  display: block;
+}
+
+.eyes-spacer span {
+  width: 100px;
+  height: 100px;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: clamp(24px, 4.5vh, 56px);
+  max-width: 1320px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-desc {
+  padding-top: 30px;
+  max-width: 400px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+@media (max-width: 760px) {
+  .hero-desc {
+    padding-top: 0px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.hero-work-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  height: 54px;
+  min-height: 54px;
+  padding: 8px 8px 8px clamp(16px, 2vw, 28px);
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff;
+  cursor: pointer;
+  line-height: 1.2;
+  box-sizing: border-box;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.hero-work-btn .availability-badge-dot {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.hero-work-btn .availability-badge-dot p {
+  color: inherit;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1;
+}
+
+.hero-work-btn .div-green-small-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  flex-shrink: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.hero-work-btn .div-green-small-div-wrapper {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.hero-work-btn .div-green-small-div svg,
+.hero-work-btn .div-green-small-div svg path {
+  fill: #ffffff !important;
+  transition: fill 0.25s ease;
+}
+
+/* Base layer is invisible before rub reveal so it doesn't show on initial white canvas */
+.hero-base .hero-work-btn {
+  opacity: 0;
+}
+
+body.hero-revealed .hero-base .hero-work-btn {
+  opacity: 1;
+}
+
+/* Hover state: inverted B&W interaction synchronized across layers */
+.hero-base:has(.hero-work-btn:hover) ~ .hero-invert .hero-work-btn,
+.hero-work-btn:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.hero-base:has(.hero-work-btn:hover) ~ .hero-invert .hero-work-btn .div-green-small-div,
+.hero-work-btn:hover .div-green-small-div {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.hero-base:has(.hero-work-btn:hover) ~ .hero-invert .hero-work-btn .div-green-small-div svg path,
+.hero-work-btn:hover .div-green-small-div svg path {
+  fill: #000000 !important;
+}
+
+.hero-base:has(.hero-work-btn:hover) ~ .hero-invert .hero-work-btn .div-green-small-div-wrapper,
+.hero-work-btn:hover .div-green-small-div-wrapper {
+  transform: rotate(45deg);
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 24px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.hero-btn span[aria-hidden] {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-btn:hover span[aria-hidden] {
+  transform: translate(2px, -2px);
+}
+
+.hero-btn.primary {
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bg);
+}
+
+.hero-btn.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  min-height: 54px;
+  padding: 0 clamp(20px, 2.5vw, 30px);
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  box-sizing: border-box;
+  color: var(--ink);
+  border: 1px solid var(--ink-line);
+  cursor: pointer;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.hero-base .hero-btn.ghost {
+  opacity: 0;
+}
+
+body.hero-revealed .hero-base .hero-btn.ghost {
+  opacity: 1;
+}
+
+.hero-base:has(.hero-btn.ghost:hover) ~ .hero-invert .hero-btn.ghost,
+.hero-btn.ghost:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+/* Mobile-only experience section */
+.hero-mobile-exp {
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .hero-base,
+  .hero-invert {
+    --eye-scale: 0.75;
+  }
+  .eyes-scene,
+  .eyes-spacer {
+    margin: -12px -56px -12px 0;
+  }
+}
+
+@media (max-width: 760px) {
+  #hero {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: 560px;
+  }
+  .hero-base {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: clamp(75px, 11vh, 95px) 20px clamp(28px, 5vh, 44px);
+    --eye-scale: 0.42;
+  }
+  .hero-invert {
+    position: absolute;
+    inset: 0;
+    padding: clamp(75px, 11vh, 95px) 20px clamp(28px, 5vh, 44px);
+    --eye-scale: 0.42;
+  }
+  .hero-hello {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    font-size: 52px;
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+  }
+  .hero-title .line {
+    display: flex;
+    align-items: center;
+    gap: 0.18em;
+  }
+  .hero-title .line-2 {
+    justify-content: flex-start;
+  }
+  .eyes-scene,
+  .eyes-spacer {
+    display: none !important;
+  }
+  .cursor-hint {
+    display: none !important;
+  }
+  .hero-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: clamp(18px, 3.2vh, 28px);
+  }
+  .hero-desc {
+    font-size: 14.5px;
+    line-height: 1.5;
+    max-width: 100%;
+  }
+  .hero-mobile-exp {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: clamp(16px, 4vw, 22px);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  .hero-base .hero-mobile-exp {
+    opacity: 0;
+  }
+  body.hero-revealed .hero-base .hero-mobile-exp {
+    opacity: 1;
+  }
+  .hero-mobile-exp-period {
+    font-family: 'Clash Display', 'Inter Tight', Arial, sans-serif;
+    font-size: clamp(17px, 4.8vw, 22px);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0;
+  }
+  .hero-mobile-exp-text {
+    font-family: var(--font-ranade), 'Manrope', 'Poppins', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+  }
+  .hero-invert .hero-mobile-exp-text {
+    color: rgba(255, 255, 255, 0.88);
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+    margin-top: 14px;
+    align-items: center;
+  }
+  .hero-btn {
+    padding: 12px 20px;
+    font-size: 13.5px;
+  }
+  .hero-work-btn {
+    height: 46px;
+    min-height: 46px;
+    padding: 6px 8px 6px clamp(14px, 2vw, 20px);
+    font-size: 13.5px;
+  }
+  .hero-work-btn .div-green-small-div {
+    width: 32px;
+    height: 32px;
+  }
+  .hero-btn.ghost {
+    height: 46px;
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 13.5px;
+  }
+}
+
+.eyes-scene {
+  display: flex;
+  gap: 24px;
+}
+
+.eye {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border: 2px solid #111;
+  box-sizing: border-box;
+  border-radius: 50% !important;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  transition: transform 0.12s ease;
+}
+
+.eye.blink {
+  transform: scaleY(0.05);
+}
+
+.pupil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 36px;
+  height: 36px;
+  background: #000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ── "colour me" button under the eyes (fades out as colouring starts) ── */
+.eyes-scene {
+  position: relative;
+}
+
+.cursor-hint {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0a0a0a;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  white-space: nowrap;
+  opacity: 1;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.35s ease;
+  z-index: 10;
+}
+
+.cursor-hint:hover {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.cursor-hint:active {
+  transform: translateX(-50%) scale(0.97);
+}
+
+.cursor-hint.hide,
+body.hero-revealed .cursor-hint {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  transform: translateX(-50%) scale(0.85) !important;
+  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s ease !important;
+}
+
+@media (min-width: 761px) {
+  .hero-base, .hero-invert{justify-content:center !important;padding:clamp(90px,9vh,140px) 8vw clamp(40px,6vh,70px) !important}
+  .hero-main{flex:none !important}
+  .hero-bottom{margin-top:clamp(24px,4.5vh,56px) !important}
+}
+
+@media (max-width: 760px) {
+  #hero{height:auto !important;min-height:100vh;min-height:100dvh;min-height:560px}
+  .hero-base{position:relative !important;min-height:100vh;min-height:100dvh;justify-content:center !important;padding:clamp(75px,11vh,95px) 24px clamp(28px,5vh,44px) !important;--eye-scale:0.42}
+  .hero-invert{position:absolute !important;inset:0 !important;justify-content:center !important;padding:clamp(75px,11vh,95px) 24px clamp(28px,5vh,44px) !important;--eye-scale:0.42}
+  .hero-main{flex:none !important}
+  .hero-hello{font-size:15px;margin-bottom:10px}
+  .hero-title{font-size:clamp(48px,11.5vw,52px);line-height:0.96;letter-spacing:-0.04em}
+  .hero-title .line{display:flex;align-items:center;gap:0.18em}
+  .hero-title .line-2{justify-content:flex-start !important}
+  .eyes-scene, .eyes-spacer{display:none !important}
+  .eye{display:none !important}
+  .cursor-hint{display:none !important}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:16px;margin-top:clamp(18px,3.2vh,28px) !important}
+  .hero-desc{font-size:14.5px;line-height:1.5;max-width:100%}
+  .hero-actions{display:flex;flex-wrap:nowrap;gap:10px;width:100%;margin-top:14px;align-items:center}
+  .hero-btn{padding:12px 20px;font-size:13.5px}
+  .hero-work-btn {
+    height: 46px;
+    min-height: 46px;
+    padding: 6px 8px 6px clamp(14px, 2vw, 20px);
+    font-size: 13.5px;
+  }
+  .hero-work-btn .div-green-small-div {
+    width: 32px;
+    height: 32px;
+  }
+  .hero-btn.ghost {
+    height: 46px;
+    min-height: 46px;
+    padding: 0 20px;
+    font-size: 13.5px;
+  }
+}

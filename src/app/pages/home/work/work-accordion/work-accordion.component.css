@@ -1,0 +1,27 @@
+/* Split from: css/style.css, css/saju.css (rules copied verbatim, original order kept) */
+
+.acc {
+  --closed: 190px;
+  display: flex;
+  gap: 24px;
+  height: 620px;
+}
+
+.acc.in-view .acc-panel {
+  opacity: 1;
+  translate: 0 0;
+  transition: flex-basis 0.7s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease, opacity 0.7s ease var(--d, 0s), translate 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s);
+}
+
+@media (max-width: 900px) {
+  .acc {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.acc.in-view .acc-panel{transition:flex-basis .45s cubic-bezier(0.16,1,0.3,1),border-color .3s ease,opacity .7s ease var(--d,0s),translate .8s cubic-bezier(0.22,1,0.36,1) var(--d,0s) !important}
+
+@media (min-width: 901px) {
+  .acc{--closed:120px;height:clamp(480px,58vh,600px)}
+}

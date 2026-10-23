@@ -1,0 +1,130 @@
+<!-- PROJECT PAGE: one template for all 4 project pages. `project` comes from project.component.ts -->
+<div class="project-page-root">
+  <div class="section-cursor-grid" appCursorGrid></div>
+
+  <!-- ===== 1. HERO: headline, description, Focus/Tools/Purpose, cover image ===== -->
+  <section class="project-hero">
+    <div class="project-hero-inner">
+      <div class="project-hero-top">
+        <div>
+          <h1 class="project-headline"><span class="dim">{{ project.headlineDim }}</span>{{ project.headlineRest }}</h1>
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-meta">
+            @for (m of project.meta; track m.label) {
+              <div><span class="project-meta-label">{{ m.label }}</span><span class="project-meta-value">{{ m.value }}</span></div>
+            }
+          </div>
+        </div>
+        <img class="hero-shot" [src]="project.cover" [alt]="project.coverAlt" />
+      </div>
+    </div>
+  </section>
+
+  <main class="pl-main">
+    <div class="pl-inner">
+
+      <!-- ===== 2. CAROUSEL: the project's images. Which one depends on the project. ===== -->
+      <section class="pl-section">
+
+        <!-- Style A: three vertical columns that scroll up and down -->
+        @if (columnsCarousel; as carousel) {
+          <div class="cr cr--cols">
+            <div class="cr-head">
+              <div class="pl-badge">
+                <div class="pl-badge-dot"></div>
+                <p class="text-preset-section-label text-white-a50">{{ carousel.label }}</p>
+              </div>
+              <span class="cr-hint">Hover to pause</span>
+            </div>
+            <div class="cr-cols">
+              @for (col of carousel.columns; track $index; let ci = $index) {
+                <div class="cr-col">
+                  <div class="cr-track" [style.--dur]="col.durationSeconds + 's'">
+                    <!-- the images are shown twice (2nd set hidden from screen readers) so the loop has no gap -->
+                    @for (img of col.images; track $index; let i = $index) {
+                      @if (!failedImages.has(ci + '-' + i)) {
+                        <button class="cr-item" type="button" [attr.data-full]="img.src" (click)="openLightbox(img.src)">
+                          <img [src]="img.src" [alt]="img.alt" loading="lazy" (error)="markFailed(ci + '-' + i)" />
+                        </button>
+                      }
+                    }
+                    @for (img of col.images; track $index; let i = $index) {
+                      @if (!failedImages.has(ci + '-h' + i)) {
+                        <button class="cr-item" type="button" [attr.data-full]="img.src" aria-hidden="true" tabindex="-1" (click)="openLightbox(img.src)">
+                          <img [src]="img.src" alt="" loading="lazy" (error)="markFailed(ci + '-h' + i)" />
+                        </button>
+                      }
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Style B: one horizontal strip that scrolls sideways -->
+        @if (stripCarousel; as carousel) {
+          <div class="cr cr--row">
+            <div class="cr-head">
+              <div class="pl-badge">
+                <div class="pl-badge-dot"></div>
+                <p class="text-preset-section-label text-white-a50">{{ carousel.label }}</p>
+              </div>
+              <span class="cr-hint">Hover to pause</span>
+            </div>
+            <div class="cr-strip">
+              <div class="cr-strip-track" [style.--dur]="carousel.durationSeconds + 's'">
+                @for (item of carousel.items; track $index; let i = $index) {
+                  @if (!failedImages.has('' + i)) {
+                    <!-- item.kind decides the tag: button = opens lightbox, link = opens a website, otherwise a plain tile -->
+                    @switch (item.kind) {
+                      @case ('button') {
+                        <button class="cr-item" [class.is-light]="item.light" type="button" [attr.data-full]="item.src"
+                          [attr.aria-hidden]="item.hidden ? 'true' : null" [attr.tabindex]="item.hidden ? -1 : null" (click)="openLightbox(item.src)">
+                          <img [src]="item.src" [alt]="item.alt" loading="lazy" (error)="markFailed('' + i)" />
+                        </button>
+                      }
+                      @case ('link') {
+                        <a class="cr-item" [class.is-light]="item.light" [href]="item.href" target="_blank" rel="noopener"
+                          [attr.aria-hidden]="item.hidden ? 'true' : null" [attr.tabindex]="item.hidden ? -1 : null">
+                          <img [src]="item.src" [alt]="item.alt" loading="lazy" (error)="markFailed('' + i)" />
+                        </a>
+                      }
+                      @default {
+                        <div class="cr-item" [class.is-light]="item.light"
+                          [attr.aria-hidden]="item.hidden ? 'true' : null" [attr.tabindex]="item.hidden ? -1 : null">
+                          <img [src]="item.src" [alt]="item.alt" loading="lazy" (error)="markFailed('' + i)" />
+                        </div>
+                      }
+                    }
+                  }
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </section>
+
+      <!-- ===== 3. MORE WORK: links to the other project pages ===== -->
+      <section class="pl-section">
+        <div class="pl-badge">
+          <div class="pl-badge-dot"></div>
+          <p class="text-preset-section-label text-white-a50">More work</p>
+        </div>
+        <div class="pl-more">
+          @for (l of project.more; track l.slug) {
+            <a [routerLink]="['/projects', l.slug]">{{ l.label }} <span aria-hidden="true">&nearr;</span></a>
+          }
+        </div>
+      </section>
+    </div>
+  </main>
+
+</div>
+
+<!-- ===== 4. LIGHTBOX: full-screen image popup (hidden until an image is clicked) =====
+   It sits OUTSIDE .project-page-root on purpose: that wrapper's CSS would otherwise change its position. -->
+<div class="lb" id="lb" [hidden]="!lightboxSrc" (click)="closeLightbox()">
+  <button type="button">Close &times;</button>
+  <img alt="" [attr.src]="lightboxSrc" />
+</div>

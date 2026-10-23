@@ -1,0 +1,117 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.latest-projects-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.latest-projects-header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding-bottom: clamp(30px, 4vw, 60px);
+}
+
+.latest-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.latest-status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-accent-lime, #1fc7ff);
+  box-shadow: 0 2px 13px rgba(31, 199, 255, 0.5);
+  flex-shrink: 0;
+}
+
+.latest-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background-color: var(--color-border-grid, #e8e8e8);
+  border: 1px solid var(--color-border-grid, #e8e8e8);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.latest-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 40px 22px 22px;
+  background-color: var(--color-surface-white, #ffffff);
+  text-decoration: none;
+  overflow: hidden;
+  transition: background-color 0.2s cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+.latest-card:hover {
+  background-color: #f7f7f7;
+}
+
+.latest-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 0 32px 10px;
+}
+
+.latest-card-details .text-preset-project-title {
+  color: var(--color-charcoal, #2f2f2f);
+}
+
+.latest-card-details .text-preset-small {
+  color: var(--color-charcoal, #2f2f2f);
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.latest-card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.latest-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  transition: transform 0.5s ease;
+}
+.latest-card:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 991px) {
+  .latest-projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .latest-card {
+    padding: 30px 20px 20px;
+  }
+
+  .latest-card-details {
+    padding: 0 0 20px 0;
+  }
+}

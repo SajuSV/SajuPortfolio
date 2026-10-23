@@ -1,0 +1,17 @@
+.section-cursor-grid,
+.page-cursor-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.section-cursor-grid .cursor-grid__canvas,
+.page-cursor-grid .cursor-grid__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
