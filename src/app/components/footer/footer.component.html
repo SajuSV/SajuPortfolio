@@ -152,12 +152,14 @@
             </div>
             <div class="footer-top divider-top-subtle">
               <div class="div-footer-div">
-                <div class="div-footer-div-4">
-                  <div class="div-logo-2">
-                    <h3 class="ui-text text-preset-card-title">Saju S V</h3>
-                  </div>
-                  <div class="div-footer-div-3"></div>
+                <div class="footer-bottom-copyright">
+                  <p class="ui-text type-inter-13-white-center opacity-60">© 2026 Saju S V</p>
                 </div>
+
+                <div class="footer-keep-scrolling" role="button" tabindex="0" (click)="triggerNextPage()">
+                  <span>Keep scrolling <span class="scroll-arrow">&darr;</span></span>
+                </div>
+
                 <div class="div-footer-div-wrapper-3">
                   <a class="div-a-5" href="./" rel="noopener">
                     <p class="ui-text type-inter-13-white-center opacity-60">Created by</p>
@@ -177,6 +179,18 @@
                     <span class="eye"><span class="pupil"></span></span>
                     <span class="eye"><span class="pupil"></span></span>
                   </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Page by Scrolling Section -->
+          <div class="next-page-section" #nextPageSection>
+            <div class="next-page-card">
+              <div class="next-page-pill">
+                <span>Opening nextpage</span>
+                <div class="next-page-track">
+                  <div class="next-page-fill" [style.width.%]="progress"></div>
                 </div>
               </div>
             </div>
