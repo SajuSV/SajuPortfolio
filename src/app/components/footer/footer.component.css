@@ -248,12 +248,26 @@
 .site-footer .next-page-section {
   width: 100%;
   background-color: #f7f7f8;
-  padding: 44px clamp(16px, 4vw, 40px) 56px;
-  min-height: 48vh;
+  max-height: 0;
+  opacity: 0;
+  padding: 0 clamp(16px, 4vw, 40px);
+  overflow: hidden;
+  pointer-events: none;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.35s ease,
+              padding 0.45s ease;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+
+.site-footer .next-page-section.is-open {
+  max-height: 600px;
+  opacity: 1;
+  padding: 44px clamp(16px, 4vw, 40px) 56px;
+  min-height: 48vh;
+  pointer-events: auto;
 }
 
 .site-footer .next-page-card {
@@ -540,7 +554,7 @@
     transform-origin: right center;
   }
 
-  .site-footer .next-page-section {
+  .site-footer .next-page-section.is-open {
     padding: 28px 16px 40px;
     min-height: 38vh;
   }

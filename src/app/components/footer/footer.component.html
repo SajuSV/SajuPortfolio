@@ -187,10 +187,10 @@
           </div>
 
           <!-- Next Page by Scrolling Section -->
-          <div class="next-page-section" #nextPageSection>
+          <div class="next-page-section" [class.is-open]="isNextPageOpen" #nextPageSection>
             <div class="next-page-card">
               <div class="next-page-pill">
-                <span>Opening nextpage</span>
+                <span>Opening {{ nextPageName }}</span>
                 <div class="next-page-track">
                   <div class="next-page-fill" [style.width.%]="progress"></div>
                 </div>
