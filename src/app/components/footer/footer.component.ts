@@ -33,8 +33,10 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
 
   progress = 0;
   private progressInterval?: ReturnType<typeof setInterval>;
+  private freezeTimeout?: ReturnType<typeof setTimeout>;
   private observer?: IntersectionObserver;
   private isNavigating = false;
+  private isFreezing = false;
 
   // Every effect gives back a "stop" function; we collect them here and run them on destroy.
   private cleanups: (() => void)[] = [];
@@ -76,6 +78,10 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.observer?.disconnect();
+    if (this.freezeTimeout) {
+      clearTimeout(this.freezeTimeout);
+      this.freezeTimeout = undefined;
+    }
     this.stopProgress();
     this.cleanups.forEach((stop) => stop());
     this.cleanups = [];
@@ -87,15 +93,24 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   }
 
   triggerNextPage(): void {
-    if (this.nextPageSection?.nativeElement) {
-      this.nextPageSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+    this.startProgress();
   }
 
   private startProgress(): void {
-    if (this.progressInterval || this.isNavigating) return;
+    if (this.progressInterval || this.isNavigating || this.isFreezing) return;
+
+    // Smoothly scroll below so user clearly sees and feels the next page section
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth',
+    });
+
     const startTime = Date.now();
-    const duration = 750;
+    const duration = 650;
     this.zone.runOutsideAngular(() => {
       this.progressInterval = setInterval(() => {
         const elapsed = Date.now() - startTime;
@@ -103,8 +118,17 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
         this.zone.run(() => {
           this.progress = pct;
           if (pct >= 100) {
-            this.stopProgress();
-            this.navigateToNext();
+            if (this.progressInterval) {
+              clearInterval(this.progressInterval);
+              this.progressInterval = undefined;
+            }
+
+            // Freeze for a second so user feels they are entering the next page
+            this.isFreezing = true;
+            this.freezeTimeout = setTimeout(() => {
+              this.isFreezing = false;
+              this.navigateToNext();
+            }, 1000);
           }
         });
       }, 25);
@@ -112,13 +136,13 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   }
 
   private stopProgress(): void {
+    if (this.isFreezing || this.isNavigating) return;
+
     if (this.progressInterval) {
       clearInterval(this.progressInterval);
       this.progressInterval = undefined;
     }
-    if (!this.isNavigating) {
-      this.progress = 0;
-    }
+    this.progress = 0;
   }
 
   private navigateToNext(): void {
@@ -128,6 +152,7 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
     this.router.navigateByUrl(target).then(() => {
       window.scrollTo({ top: 0, behavior: 'instant' });
       this.isNavigating = false;
+      this.isFreezing = false;
       this.progress = 0;
     });
   }
