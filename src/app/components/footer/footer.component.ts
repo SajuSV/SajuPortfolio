@@ -13,7 +13,7 @@ const PAGE_ROUTES = [
   '/projects/webdesign',
   '/projects/posterdesign',
   '/projects/webdev',
-  '/projects/logodesign',
+  // '/projects/logodesign',
 ];
 
 @Component({
